@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -36,9 +37,9 @@ const Hero = () => {
 
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-          <button className="w-full sm:w-auto bg-[#5850EC] hover:bg-[#453fca] text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all shadow-lg shadow-indigo-200 active:scale-95">
-            Start free trial
-          </button>
+          <Link to="/ai" className='w-full sm:w-auto bg-[#5850EC] hover:bg-[#453fca] text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all shadow-lg shadow-indigo-200 active:scale-95'>
+            Get Started
+          </Link>
           <button className="w-full sm:w-auto bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 px-8 py-4 rounded-2xl font-bold text-lg transition-all active:scale-95">
             View examples
           </button>

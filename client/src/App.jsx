@@ -11,14 +11,17 @@ import RemoveBackground from './pages/RemoveBackground'
 import RemoveObject from './pages/RemoveObject'
 import ReviewResume from './pages/ReviewResume'
 import Community from './pages/Community'
-
+import Login from './pages/Login'
 
 const App = () => {
   return (
     <div>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        
+
+        {/* auth routes */}
+        <Route path='/login' element={<Login/>}/>
+
         {/* nested routes */}
         <Route path='/ai' element={<Layout/>}>
           {/* index route */}

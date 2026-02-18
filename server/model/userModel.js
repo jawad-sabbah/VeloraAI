@@ -14,7 +14,7 @@ class UserModel{
     }
 
     static async  findByEmail(email){
-      const query=`select * from users where email=$1 and deleted_at is null`
+      const query=`select * from users u where email=$1 and deleted_at is null`
       const values=[email];
       const {rows}=await sql.query(query,values);
       return rows[0];

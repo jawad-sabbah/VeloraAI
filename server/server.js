@@ -1,27 +1,27 @@
 import express from 'express';
 import cors from 'cors';
-import 'dotenv/config'
+import 'dotenv/config';
 import sql from './config/db.js';
 import userRoute from './routes/userRoute.js';
 
-
 const app = express();
 
+// CORS
+app.use(cors({
+  origin: 'http://localhost:5173', // React dev server
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+}));
 
-
-
-//request body parsing middleware
-app.use(cors());
-// Parse JSON bodies
+// Body parser
 app.use(express.json());
 
-//routes
+// Routes
 app.use('/api/users', userRoute);
 
-app.get('/', (req, res) => {
-    res.send('server is running');
-});
+app.get('/', (req, res) => res.send('Server is running'));
 
+// Test DB
 app.get("/test-db", async (req, res) => {
   try {
     const result = await sql.query("SELECT NOW()");
@@ -32,15 +32,5 @@ app.get("/test-db", async (req, res) => {
   }
 });
 
-
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-}
-);
-
-
-
-
-
+const PORT = process.env.PORT || 3000; // ✅ Backend runs on 3000
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -6,15 +6,14 @@ import { generateToken } from "../../utils/jwt.js";
 class UserService{
  
   static async register(data){
-    if (!data.email || !data.password || !data.full_name) {
-      throw new Error("Email, password, and full name are required");
-    }
+    
     const existingUser = await UserModel.findByEmail(data.email);
     if (existingUser) {
       throw new Error("Email already in use");
     }
     const hashedPassword = await bcrypt.hash(data.password, 10);
   
+   
     return await UserModel.create({
       email: data.email,
       password: hashedPassword,

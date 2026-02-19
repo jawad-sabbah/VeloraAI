@@ -12,6 +12,9 @@ import RemoveObject from './pages/RemoveObject'
 import ReviewResume from './pages/ReviewResume'
 import Community from './pages/Community'
 import Login from './pages/Login'
+import Register from './pages/Register'
+
+import ProtectedRoute from './components/ProtectedRoute'
 
 const App = () => {
   return (
@@ -21,9 +24,16 @@ const App = () => {
 
         {/* auth routes */}
         <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<Register/>}/>
 
         {/* nested routes */}
-        <Route path='/ai' element={<Layout/>}>
+        <Route path='/ai' element={
+
+          <ProtectedRoute>
+            <Layout/>
+          </ProtectedRoute>
+
+        }>
           {/* index route */}
           <Route index  element={<Dashboard/>}/>
           <Route path='write-article' element={<WriteArticle/>}/>

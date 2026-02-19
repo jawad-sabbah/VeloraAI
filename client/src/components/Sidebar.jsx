@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { 
   LayoutDashboard, 
   SquarePen, 
@@ -12,6 +13,20 @@ import {
 } from 'lucide-react'
 
 const Sidebar = () => {
+
+   const naviagate = useNavigate()
+
+   const handleLogout = () => {
+    // Clear any authentication tokens or user data here
+    // For example, if you're using localStorage:
+    localStorage.removeItem('token');
+    // Redirect to the login page
+    naviagate('/login')
+
+   }
+  
+
+
   const menuItems = [
     { title: 'Dashboard', icon: LayoutDashboard, path: '/ai' },
     { title: 'Write Article', icon: SquarePen, path: '/ai/write-article' },
@@ -70,7 +85,7 @@ const Sidebar = () => {
 
       {/* 3. Logout */}
       <div className="px-4 mt-auto">
-        <button className="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-red-500 hover:bg-red-50/50 rounded-xl transition-all">
+        <button className="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-red-500 hover:bg-red-50/50 rounded-xl transition-all" onClick={handleLogout}>
           <LogOut size={18} strokeWidth={2} />
           <span className="text-sm font-bold tracking-tight">Logout</span>
         </button>

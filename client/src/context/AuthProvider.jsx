@@ -22,7 +22,7 @@ const AuthProvider = ({ children }) => {
 
       try {
         const res = await getCurrentUser();
-        setUser(res.data.data);
+        setUser(res.data);
       } catch {
         logout();
       } finally {

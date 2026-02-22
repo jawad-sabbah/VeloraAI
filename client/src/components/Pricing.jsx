@@ -1,7 +1,10 @@
 import React from 'react';
 import { Check } from 'lucide-react';
+import { useNavigate } from 'react-router-dom'; // react-router navigation
 
 const Pricing = () => {
+  const navigate = useNavigate();
+
   const plans = [
     {
       name: "Free",
@@ -13,7 +16,7 @@ const Pricing = () => {
     },
     {
       name: "Premium",
-      price: "19",
+      price: "9",
       description: "For professionals who need unlimited power and speed.",
       features: ["Unlimited AI Generations", "Ultra HD Image Export", "Priority 24/7 Support", "Advanced Custom Templates", "Commercial Usage License"],
       buttonText: "Go Premium",
@@ -24,14 +27,11 @@ const Pricing = () => {
   return (
     <section id="pricing" className="py-24 bg-white scroll-mt-24">
       <div className="max-w-5xl mx-auto px-6">
-        
-        {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">Ready to scale?</h2>
           <p className="text-gray-500 text-lg">Choose the plan that fits your creative needs.</p>
         </div>
 
-        {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {plans.map((plan, index) => (
             <div 
@@ -70,11 +70,17 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              <button className={`w-full py-4 rounded-2xl font-bold text-sm transition-all active:scale-95 ${
-                plan.premium 
-                ? 'bg-white text-[#5850EC] hover:bg-indigo-50 shadow-lg' 
-                : 'bg-gray-900 text-white hover:bg-gray-800'
-              }`}>
+              <button
+                onClick={() => {
+                  if (plan.name === "Free") navigate("/register");
+                  else navigate("/checkout"); // or your premium page
+                }}
+                className={`w-full py-4 rounded-2xl font-bold text-sm transition-all active:scale-95 ${
+                  plan.premium 
+                  ? 'bg-white text-[#5850EC] hover:bg-indigo-50 shadow-lg' 
+                  : 'bg-gray-900 text-white hover:bg-gray-800'
+                }`}
+              >
                 {plan.buttonText}
               </button>
             </div>

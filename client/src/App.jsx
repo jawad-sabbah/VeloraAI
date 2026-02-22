@@ -13,6 +13,7 @@ import ReviewResume from './pages/ReviewResume'
 import Community from './pages/Community'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Checkout from './pages/Checkout'
 
 import ProtectedRoute from './components/ProtectedRoute'
 
@@ -21,6 +22,7 @@ const App = () => {
     <div>
       <Routes>
         <Route path='/' element={<Home/>}/>
+        <Route path='/checkout' element={<Checkout/>}/>
 
         {/* auth routes */}
         <Route path='/login' element={<Login/>}/>

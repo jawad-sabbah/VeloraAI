@@ -1,4 +1,5 @@
 import React from 'react'
+import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { 
@@ -11,20 +12,22 @@ import {
   FileText, 
   LogOut 
 } from 'lucide-react'
+import { AuthContext } from '../context/AuthContext'
+
 
 const Sidebar = () => {
+
+  const { user,logout } =useContext(AuthContext)
 
    const naviagate = useNavigate()
 
    const handleLogout = () => {
-    // Clear any authentication tokens or user data here
-    // For example, if you're using localStorage:
-    localStorage.removeItem('token');
-    // Redirect to the login page
+    logout()
     naviagate('/login')
-
    }
   
+    
+
 
 
   const menuItems = [
@@ -50,7 +53,7 @@ const Sidebar = () => {
           />
         </div>
         {/* Name: 15px with tight tracking */}
-        <h4 className="text-[15px] font-bold text-gray-900 tracking-tight">William Mark</h4>
+        <h4 className="text-[15px] font-bold text-gray-900 tracking-tight">{user?.full_name || 'Guest'}</h4>
         {/* Subtitle: 11px uppercase with wide tracking for luxury feel */}
         <p className="text-[11px] font-bold text-indigo-400 uppercase tracking-[0.1em] mt-1">Pro Member</p>
       </div>
